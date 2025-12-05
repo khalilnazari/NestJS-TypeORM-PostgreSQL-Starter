@@ -14,7 +14,7 @@ export class AppConfigService {
   }
 
   private getBoolean(key: string) {
-    return this.configService.get<boolean>(key);
+    return this.configService.get<string>(key) === 'true' ? true : false;
   }
 
   public appPort() {
@@ -23,11 +23,19 @@ export class AppConfigService {
 
   public dbConfig() {
     return {
-      host: this.getString('DB_HOST'),
-      port: this.getNumber('DB_PORT'),
-      username: this.getString('DB_USERNAME'),
-      password: this.getString('DB_PASSWORD'),
-      database: this.getString('DB_DATABASE'),
+      host: this.getString('POSTGRES_HOST'),
+      port: this.getNumber('POSTGRES_PORT'),
+      username: this.getString('POSTGRES_USERNAME'),
+      password: this.getString('POSTGRES_PASSWORD'),
+      database: this.getString('POSTGRES_DATABASE'),
+      synchronize: this.getBoolean('POSTGRES_SYNCHRONIZE'),
+      logging: this.getBoolean('POSTGRES_LOGGING'),
+      ssl: this.getBoolean('POSTGRES_SSL'),
+      connectTimeoutMS: this.getNumber('POSTGRES_POOL_CONNECT_TIMEOUT'),
+      poolSize: this.getNumber('POSTGRES_POOL_MAX'),
+      extra: {
+        idleTimeoutMillis: this.getNumber('POSTGRES_POOL_IDLE_TIMEOUT'),
+      },
     };
   }
 
