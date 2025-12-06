@@ -44,4 +44,15 @@ export class AppConfigService {
       provider: this.getString('EMAIL_PROVIDER'),
     };
   }
+
+  public jwtConfig() {
+    return {
+      jwtAccessTokenSecret: this.getString('JWT_ACCESS_TOKEN_SECRET')!,
+      jwtAccessTokenExpiry: this.getNumber('JWT_ACCESS_TOKEN_EXPIRY')!,
+      jwtRefreshTokenSecret: this.getString('JWT_REFRESH_TOKEN_SECRET')!,
+      jwtRefreshTokenExpiry: this.getNumber('JWT_REFRESH_TOKEN_EXPIRY')!,
+      cookieAccessTokenAge: this.getNumber('COOKIE_ACCESS_TOKEN_AGE')!,
+      cookieRefreshTokenAge: this.getNumber('COOKIE_REFRESH_TOKEN_AGE')!,
+    };
+  }
 }
