@@ -1,3 +1,4 @@
+import { UserRole } from 'src/auth/auth.roles';
 import {
   Column,
   CreateDateColumn,
@@ -17,6 +18,9 @@ export class User {
 
   @Column()
   isActive: boolean;
+
+  @Column({ default: UserRole.USER })
+  role: string;
 
   @Column()
   password: string;
