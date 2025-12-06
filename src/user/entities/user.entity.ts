@@ -9,14 +9,14 @@ import {
 
 @Entity('User')
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   email: string;
 
   @Column()
-  sActive: string;
+  isActive: boolean;
 
   @Column()
   password: string;
