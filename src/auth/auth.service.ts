@@ -40,6 +40,8 @@ export class AuthService {
       const accessToken = await this.getAccessToken(user);
       const refreshToken = await this.getRefreshToken(user);
 
+      // Based on your security policy you can store the auth token in database and or catch it using tools like Redis
+
       this.logger.log(`User ${email} login at ${new Date()}`);
 
       return {
@@ -76,6 +78,9 @@ export class AuthService {
       if (!payload) {
         throw new UnauthorizedException('Invalid token');
       }
+
+      // Depnding on your auth policy, if stored the auth token,
+      // you can fetch and validate it from database or get it from catching tool like Redis
 
       const isUserValid = await this.userRepository.findOneByEmail(
         payload?.email,

@@ -38,6 +38,9 @@ export class AuthGuard implements CanActivate {
       });
       request['userContext'] = payload;
 
+      // Depnding on your auth policy, if stored the auth token,
+      // you can fetch and validate it from database or get it from catching tool like Redis
+
       const scopes =
         this.reflector.get<string[]>('scopes', context.getHandler()) || [];
 
