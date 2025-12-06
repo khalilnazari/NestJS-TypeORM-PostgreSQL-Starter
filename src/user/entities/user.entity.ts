@@ -1,4 +1,3 @@
-import { UserRole } from 'src/auth/auth.roles';
 import {
   Column,
   CreateDateColumn,
@@ -7,6 +6,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+export enum UserRole {
+  USER = 'user',
+  ADMIN = 'admin',
+}
 
 @Entity('User')
 export class User {

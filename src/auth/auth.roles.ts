@@ -1,7 +1,4 @@
-export enum UserRole {
-  USER = 'user',
-  ADMIN = 'admin',
-}
+import { UserRole } from 'src/user/entities/user.entity';
 
 export const AccessScope = {
   // only admin and config role can access to admin routes

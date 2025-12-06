@@ -18,7 +18,18 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:create": "typeorm migration:create ./migrations/${MIGRATION_NAME}",
+    "migration:generate": "NODE_ENV=local pnpm typeorm migration:generate ./migrations/${MIGRATION_NAME} -d ./datasource.ts",
+    "migration:revert": "NODE_ENV=local pnpm typeorm migration:revert -d ./datasource.ts",
+    "schema:sync": "NODE_ENV=local pnpm typeorm schema:sync -d ./datasource.ts",
+    "schema:drop": "NODE_ENV=local pnpm typeorm schema:drop -d ./datasource.ts",
+    "db:migrate:local": "NODE_ENV=local pnpm typeorm migration:run -d ./datasource.ts",
+    "db:migrate:dev": "NODE_ENV=dev pnpm typeorm migration:run -d ./datasource.ts",
+    "db:migrate:test": "NODE_ENV=test pnpm typeorm migration:run -d ./datasource.ts",
+    "db:migrate:uat": "NODE_ENV=uat pnpm typeorm migration:run -d ./datasource.ts",
+    "db:migrate:prod": "NODE_ENV=prod pnpm typeorm migration:run -d ./datasource.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -32,6 +43,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
